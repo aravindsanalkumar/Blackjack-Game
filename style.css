@@ -25,4 +25,7 @@ button {
     font-weight: bold;
     border: none;
     border-radius: 2px;
+    display: block;
+    margin-bottom: 5px;
+    margin: 5px auto;
 }

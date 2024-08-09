@@ -7,6 +7,7 @@ let message = "";
 
 let message_el = document.getElementById("message_el");
 let sum_el = document.getElementById("sum_el");
+let card_el = document.getElementById("card_el");
 
 
 function startGame(){
@@ -24,4 +25,8 @@ function startGame(){
     message_el.textContent = message;
 }
 
-
+function newCard(){
+    let card  = 6;
+    sum = sum + card;
+    startGame();
+}
