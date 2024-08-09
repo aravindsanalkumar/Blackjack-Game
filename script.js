@@ -1,25 +1,41 @@
-let firstCard = 14;
-let secondCard = 7;
-let cards = [firstCard,secondCard];
-let sum = firstCard + secondCard;
+let cards = [];
+let sum = 0;
 let hasBlackJack = false;
-let isAlive = true;
+let isAlive = false;
 let message = "";
-
 let message_el = document.getElementById("message_el");
 let sum_el = document.getElementById("sum_el");
 let card_el = document.getElementById("card_el");
 
+function getRandomCard(){
+    let randomNumber = Math.floor(Math.random()*13+1);
+    if(randomNumber > 10){
+        return 10;
+    }
+    else if(randomNumber === 1){
+        return 11;
+    }
+    else{
+        return randomNumber;
+    }
+}
+
 function startGame(){
+    isAlive = true;
+    let firstCard = getRandomCard();
+    let secondCard = getRandomCard();
+    cards = [firstCard,secondCard];
+    sum = firstCard + secondCard;
     renderGame();
 }
 
 
 function renderGame(){
-    sum_el.textContent = "Cards:"
+    card_el.textContent = "Cards:"
     for(let i = 0;i < cards.length;i++){
-        sum_el.textContent += cards[i] + " ";
+        card_el.textContent += cards[i] + " ";
     }
+    sum_el.textContent ="Sum:" + sum;
     if(sum <= 20){
     message = "Do you want to draw a new card? 🙂";
     }
@@ -35,8 +51,11 @@ function renderGame(){
 }
 
 function newCard(){
-    let card  = 6;
-    cards.push(card);
-    sum = sum + card;
-    renderGame();
+
+    if(isAlive === true && hasBlackJack === false){        
+        let card  = getRandomCard();
+        cards.push(card);
+        sum = sum + card;
+        renderGame();
+    }
 }
